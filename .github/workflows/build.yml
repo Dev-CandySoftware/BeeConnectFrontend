@@ -4,10 +4,15 @@ on:
     tags:
       - "v*"
 
+permissions:
+  contents: write
+  releases: write
+
 jobs:
   release:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [macos-latest, windows-latest]
 
