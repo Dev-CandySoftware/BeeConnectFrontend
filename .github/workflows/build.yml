@@ -6,7 +6,6 @@ on:
 
 permissions:
   contents: write
-  releases: write
 
 jobs:
   release:
@@ -27,6 +26,7 @@ jobs:
           cache: "npm"
 
       - name: Create .env file
+        shell: bash
         run: |
           echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> .env
 
