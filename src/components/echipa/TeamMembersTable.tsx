@@ -1,5 +1,6 @@
 import { Button } from "../Button";
 import type { TeamMember } from "../../api/parsers/entities/team";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   items: TeamMember[];
@@ -18,6 +19,7 @@ export default function TeamMembersTable({
   onRecover,
   onDelete,
 }: Props) {
+  const navigate = useNavigate();
   return (
     <div className="overflow-x-auto rounded-2xl border border-amber-200 bg-white shadow-sm">
       <table className="min-w-full text-left text-sm">
@@ -42,6 +44,16 @@ export default function TeamMembersTable({
                 <td className="px-4 py-3 text-amber-600">{m.branchName}</td>
                 <td className="px-4 py-3">
                   <div className="flex flex-wrap justify-end gap-2">
+                  <Button
+                      type="button"
+                      variant="secondary"
+                      size="xs"
+                      onClick={() => navigate(`/contacte/user/${m.id}`, { 
+                        state: { userName: m.numeComplet } 
+                      })}
+                    >
+                      Vezi contacte
+                    </Button>
                     <Button
                       type="button"
                       variant="secondary"
@@ -68,6 +80,7 @@ export default function TeamMembersTable({
                     >
                       {deletingId === m.id ? "Se șterge…" : "Șterge"}
                     </Button>
+                    
                   </div>
                 </td>
               </tr>

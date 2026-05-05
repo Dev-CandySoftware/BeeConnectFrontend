@@ -11,9 +11,12 @@ import { usePagedList } from "../hooks/usePagedList";
 
 const PAGE_SIZE = 9;
 
-function ContactPage() {
+function ContactPage({ overrideUserId, overrideName }: { 
+  overrideUserId?: number;
+  overrideName?: string;
+}) {
   const navigate = useNavigate();
-  const userId = getSessionUserId();
+  const userId = overrideUserId ?? getSessionUserId();
   const [deleteError, setDeleteError] = useState("");
   const fetchPage = useCallback(
     (page: number, pageSize: number) => {
@@ -79,13 +82,15 @@ function ContactPage() {
                 Administrare contacte
               </p>
               <h1 className="text-4xl font-extrabold text-amber-900 sm:text-5xl">
-                Contacte
+                Contacte {overrideName ? `- ${overrideName}` : ""}
               </h1>
               <p className="mt-2 text-sm text-amber-700">
                 Vezi rapid toate detaliile și gestionează fiecare contact.
               </p>
             </div>
-            <Button shadow size="sm" onClick={() => navigate("/contact/add")}>
+            <Button shadow size="sm" onClick={() => navigate(
+                    overrideUserId ? `/contact/add/${overrideUserId}` : "/contact/add"
+            )}>
               Adaugă contact
             </Button>
           </div>
@@ -117,7 +122,9 @@ function ContactPage() {
           description: "Adaugă primul contact pentru a începe.",
           action: {
             label: "Adaugă contact",
-            onClick: () => navigate("/contact/add"),
+            onClick: () => navigate(
+                    overrideUserId ? `/contact/add/${overrideUserId}` : "/contact/add"
+            ),
           },
         }}
       >

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { type CreateClientDto } from "../types/client";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { validateClient } from "../utils/validateClient";
 import { Button } from "../components/Button";
 import { createClientData } from "../api/clients";
@@ -29,7 +29,9 @@ const initialForm: CreateClientDto = {
   branchId: 0,
 };
 
-function AddContactForm() {
+function AddContactForm({ overrideUserId: overrideProp }: { overrideUserId?: number }) {
+  const { userId: userIdParam } = useParams();
+  const overrideUserId = overrideProp ?? (userIdParam ? Number(userIdParam) : undefined);
   const navigate = useNavigate();
   const [form, setForm] = useState<CreateClientDto>(initialForm);
   const [isSaving, setIsSaving] = useState(false);
@@ -47,7 +49,8 @@ function AddContactForm() {
     }
 
     setErrorMessage("");
-    const userId = getSessionUserId();
+    const userId = overrideUserId ?? getSessionUserId();
+    console.log("userId", userId);
     const branchId = getSessionBranchId();
     if (userId == null || branchId == null) {
       setErrorMessage(
@@ -68,7 +71,7 @@ function AddContactForm() {
       return;
     }
     setForm(initialForm);
-    navigate("/contacte");
+    navigate(-1);
   };
 
   return (
@@ -114,7 +117,7 @@ function AddContactForm() {
               type="button"
               variant="secondary"
               size="md"
-              onClick={() => navigate("/contacte")}
+              onClick={() => navigate(-1)}
               disabled={isSaving}
             >
               Anulează

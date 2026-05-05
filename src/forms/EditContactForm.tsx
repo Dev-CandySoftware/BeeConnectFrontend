@@ -55,7 +55,7 @@ function EditContactForm() {
       setErrorMessage(result.error);
       return;
     }
-    navigate("/contacte");
+    navigate(-1);
   };
 
   if (isLoading)
@@ -73,7 +73,7 @@ function EditContactForm() {
             variant="secondary"
             size="sm"
             className="mt-4"
-            onClick={() => navigate("/contacte")}
+            onClick={() => navigate(-1)}
           >
             Înapoi la contacte
           </Button>
@@ -119,7 +119,7 @@ function EditContactForm() {
               type="button"
               variant="secondary"
               size="md"
-              onClick={() => navigate("/contacte")}
+              onClick={() => navigate(-1)}
               disabled={isSaving}
             >
               Anulează

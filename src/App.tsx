@@ -18,6 +18,7 @@ import RegisterUserPage from "./pages/RegisterUserPage";
 import EchipaPage from "./pages/EchipaPage";
 import AuditLogPage from "./pages/AuditLogPage";
 import LicenseExpiredPage from "./pages/LicenseExpiredPage";
+import ContacteUserPage from "./pages/ContacteUserPage";
 function App() {
   return (
     <HashRouter>
@@ -29,8 +30,10 @@ function App() {
           <Route element={<SideNavbarLayout />}>
             <Route path="/" element={<Hero />} />
             <Route path="/contact/add" element={<AddContactForm />} />
+            <Route path="/contact/add/:userId" element={<AddContactForm />} />
             <Route path="/contact/edit/:id" element={<EditContactForm />} />
             <Route path="/contacte" element={<ContactPage />} />
+            <Route path="/contacte/user/:userId" element={<ContacteUserPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/sedinte" element={<SedintePage />} />
             <Route path="/sedinte/add" element={<AddSedintaForm />} />
