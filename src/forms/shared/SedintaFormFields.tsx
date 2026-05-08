@@ -1,5 +1,7 @@
 import type { CreateSedintaDto } from "../../types/sedinta";
 import LabeledField from "../../components/LabeledField";
+import { getSessionUserNume, getSessionUserPrenume } from "../../auth/session";
+import { useEffect } from "react";
 
 type Props = {
   form: CreateSedintaDto;
@@ -16,11 +18,22 @@ export default function SedintaFormFields({ form, onChange, dense }: Props) {
   const labelClassName = dense ? denseLabelClass : undefined;
   const inputClassName = dense ? denseInputClass : undefined;
 
+  const numeConsultant = getSessionUserNume() ?? "";
+  const prenumeConsultant = getSessionUserPrenume() ?? "";
+  const numeCompletConsultant = `${numeConsultant} ${prenumeConsultant}`.trim();
+
+  useEffect(() => {
+    if (!form.numeConsultant && numeCompletConsultant) {
+      onChange({ ...form, numeConsultant: numeCompletConsultant });
+    }
+  }, [numeCompletConsultant]);
+
+
   return (
     <div className="grid grid-cols-1 gap-4">
       <LabeledField
         label="Nume consultant"
-        value={form.numeConsultant}
+        value={numeCompletConsultant}
         onChange={(e) => onChange({ ...form, numeConsultant: e.target.value })}
         labelClassName={labelClassName}
         inputClassName={inputClassName}

@@ -18,7 +18,6 @@ function AddSedintaForm() {
   });
   const [isSaving, setIsSaving] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
   const handleSave = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (isSaving) return;
@@ -102,3 +101,7 @@ function AddSedintaForm() {
 }
 
 export default AddSedintaForm;
+function getSessionUserPrenume() {
+  throw new Error("Function not implemented.");
+}
+

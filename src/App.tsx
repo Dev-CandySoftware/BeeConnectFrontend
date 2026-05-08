@@ -9,6 +9,7 @@ import SideNavbarLayout from "./components/SideNavbarLayout";
 import SedintePage from "./pages/SedintePage";
 import EditSedintaPage from "./forms/EditSedintaForm";
 import AddSedintaForm from "./forms/AddSedintaForm";
+import AddTeamMeetingPage from "./pages/AddTeamMeetingPage";
 import CursuriPage from "./pages/CursuriPage";
 import ActivateAccount from "./auth/ActivateAccount";
 import Login from "./auth/Login";
@@ -19,6 +20,7 @@ import EchipaPage from "./pages/EchipaPage";
 import AuditLogPage from "./pages/AuditLogPage";
 import LicenseExpiredPage from "./pages/LicenseExpiredPage";
 import ContacteUserPage from "./pages/ContacteUserPage";
+import "./App.css";
 function App() {
   return (
     <HashRouter>
@@ -38,6 +40,7 @@ function App() {
             <Route path="/sedinte" element={<SedintePage />} />
             <Route path="/sedinte/add" element={<AddSedintaForm />} />
             <Route path="/sedinte/edit/:id" element={<EditSedintaPage />} />
+            <Route path="/sedinte/team-meeting" element={<AddTeamMeetingPage />} />
             <Route path="/cursuri" element={<CursuriPage />} />
             <Route path="/setari" element={<SetariPage />} />
             <Route

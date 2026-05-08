@@ -45,6 +45,14 @@ export function getSessionUserId(): number | null {
   return parsePositiveNumber(localStorage.getItem(SESSION_KEYS.userId));
 }
 
+export function getSessionUserNume(): string | null {
+  return localStorage.getItem(PROFILE_KEYS.nume);
+}
+
+export function getSessionUserPrenume(): string | null {
+  return localStorage.getItem(PROFILE_KEYS.prenume);
+}
+
 export function getSessionBranchId(): number | null {
   return parsePositiveNumber(localStorage.getItem(SESSION_KEYS.branchId));
 }

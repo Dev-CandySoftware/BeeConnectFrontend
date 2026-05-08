@@ -1,8 +1,8 @@
 import { API_BASE_URL, getAuthHeaders } from "./index";
 import { type CreateSedintaDto } from "../types/sedinta";
 import { requestJson, requestVoid, type ApiResult } from "./request";
-import { parseEditableSedinta, parseSedintePage } from "./parsers/entities/sedinta";
-import type { Sedinta } from "../types/sedinta";
+import { parseEditableSedinta, parseSedinta, parseSedintePage } from "./parsers/entities/sedinta";
+import type { Sedinta, TeamMeetingDto } from "../types/sedinta";
 
 export const getSedinte = async () => {
   const response = await fetch(`${API_BASE_URL}/sedinte`, {
@@ -71,3 +71,51 @@ export const updateSedintaData = async (
 
 export const deleteSedintaData = async (id: number): Promise<ApiResult<null>> =>
   requestVoid(() => deleteSedinta(id));
+
+export const getSedinteByUserId = async (userId: number) =>
+  fetch(`${API_BASE_URL}/sedinte/user/${userId}`, { headers: getAuthHeaders() });
+
+export const getSedinteMyTeam = async () =>
+  fetch(`${API_BASE_URL}/sedinte/my-team`, { headers: getAuthHeaders() });
+
+export const createTeamMeeting = async (data: TeamMeetingDto) =>
+  fetch(`${API_BASE_URL}/sedinte/team-meeting`, {
+    method: "POST",
+    headers: getAuthHeaders(),
+    body: JSON.stringify(data),
+  });
+
+export const getSedinteByUserIdData = async (
+  userId: number,
+): Promise<ApiResult<Sedinta[]>> =>
+  requestJson(() => getSedinteByUserId(userId), {
+    parse: (raw) => {
+      if (!Array.isArray(raw)) return null;
+      const items = raw.map(parseSedinta).filter((x): x is Sedinta => x != null);
+      return items;
+    },
+  });
+
+export const getSedinteMyTeamData = async (): Promise<ApiResult<Sedinta[]>> =>
+  requestJson(() => getSedinteMyTeam(), {
+    parse: (raw) => {
+      if (!Array.isArray(raw)) return null;
+      return raw.map(parseSedinta).filter((x): x is Sedinta => x != null);
+    },
+  });
+  
+  
+  export const createTeamMeetingData = async (
+    data: TeamMeetingDto,
+  ): Promise<ApiResult<null>> => requestVoid(() => createTeamMeeting(data));
+
+  export const getSedinteAll = async () =>
+    fetch(`${API_BASE_URL}/sedinte`, { headers: getAuthHeaders() });
+  
+  export const getSedinteAllData = async (): Promise<ApiResult<Sedinta[]>> =>
+    requestJson(() => getSedinteAll(), {
+      parse: (raw) => {
+        if (!Array.isArray(raw)) return null;
+        return raw.map(parseSedinta).filter((x): x is Sedinta => x != null);
+      },
+    });

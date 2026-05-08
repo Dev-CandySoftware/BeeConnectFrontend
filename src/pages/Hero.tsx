@@ -42,11 +42,6 @@ function Hero() {
         <h1 className="text-6xl font-bold text-amber-900 tracking-tight leading-tight">
           BeeConnect
         </h1>
-        <p className="text-base font-light text-amber-700">
-          Intră în aplicație și folosește meniul lateral pentru navigare rapidă.
-          <br />
-          Până fac o bară de navigare te descurci de aici ❤️
-        </p>
       </div>
     </div>
   );

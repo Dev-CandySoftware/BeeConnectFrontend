@@ -1,0 +1,125 @@
+.rbc-calendar {
+    font-family: inherit;
+  }
+  
+  .rbc-header {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #92400e;
+    padding: 10px 0;
+    border-bottom: 0.5px solid #fde68a;
+  }
+  
+  .rbc-today {
+    background-color: #fffbeb;
+  }
+  
+  .rbc-event {
+    border-radius: 6px !important;
+    border: none !important;
+    font-size: 11px !important;
+    padding: 2px 6px !important;
+    font-weight: 500 !important;
+  }
+  
+  .rbc-event:focus {
+    outline: none;
+  }
+  
+  .rbc-event.rbc-selected {
+    outline: 2px solid #d97706;
+  }
+  
+  .rbc-toolbar button {
+    font-size: 13px;
+    border-radius: 8px;
+    border: 0.5px solid #fde68a;
+    color: #92400e;
+    padding: 5px 12px;
+  }
+  
+  .rbc-toolbar button:hover {
+    background-color: #fef3c7;
+    border-color: #fbbf24;
+  }
+  
+  .rbc-toolbar button.rbc-active {
+    background: #faeeda;
+    color: #633806;
+    border-color: #ef9f27;
+    box-shadow: none;
+  }
+  
+  .rbc-toolbar button.rbc-active:hover {
+    background: #faeeda;
+    color: #633806;
+  }
+  
+  .rbc-month-view {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 0.5px solid #fde68a;
+  }
+  
+  .rbc-month-row {
+    border-color: #fde68a !important;
+  }
+  
+  .rbc-day-bg + .rbc-day-bg {
+    border-color: #fde68a !important;
+  }
+  
+  .rbc-off-range-bg {
+    background: #fffbeb55;
+  }
+  
+  .rbc-date-cell {
+    font-size: 12px;
+    font-weight: 500;
+    color: #92400e;
+    padding: 4px 8px;
+  }
+  
+  .rbc-date-cell.rbc-now {
+    color: #d97706;
+    font-weight: 700;
+  }
+  
+  .rbc-show-more {
+    font-size: 11px;
+    color: #d97706;
+    font-weight: 500;
+  }
+  
+  .rbc-agenda-view table {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 0.5px solid #fde68a;
+  }
+  
+  .rbc-agenda-date-cell,
+  .rbc-agenda-time-cell {
+    font-size: 12px;
+    color: #92400e;
+  }
+  
+  .rbc-time-view {
+    border: 0.5px solid #fde68a;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .rbc-time-header {
+    border-color: #fde68a !important;
+  }
+  
+  .rbc-timeslot-group {
+    border-color: #fde68a !important;
+  }
+  
+  .rbc-time-slot {
+    font-size: 11px;
+    color: #b45309;
+  }
