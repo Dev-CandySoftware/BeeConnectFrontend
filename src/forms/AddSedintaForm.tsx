@@ -101,7 +101,3 @@ function AddSedintaForm() {
 }
 
 export default AddSedintaForm;
-function getSessionUserPrenume() {
-  throw new Error("Function not implemented.");
-}
-
