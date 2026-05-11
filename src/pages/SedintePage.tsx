@@ -30,7 +30,10 @@ function SedintePage() {
   const navigate = useNavigate();
   const myUserId = getSessionUserId();
   const myRole = getSessionRole();
-  const isManagerOrAdmin = myRole === "Manager" || myRole === "SuperAdmin";
+  const normalizedRole = myRole.trim().toLowerCase();
+  const isManager = normalizedRole === "manager";
+  const isSuperAdmin = normalizedRole === "superadmin";
+  const isManagerOrAdmin = isManager || isSuperAdmin;
 
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -45,7 +48,7 @@ function SedintePage() {
     setIsLoading(true);
     setError("");
 
-    const result = myRole === "Manager" ? await getSedinteMyTeamData() : await getSedinteAllData();
+    const result = await getSedinteAllData();
 
     setIsLoading(false);
     if (!result.ok) {
@@ -66,7 +69,7 @@ function SedintePage() {
       resource: s,
     }));
     setEvents(mapped);
-  }, [isManagerOrAdmin, myRole, myUserId]);
+  }, [isManagerOrAdmin, myUserId]);
 
   useEffect(() => {
     void load();
@@ -86,14 +89,14 @@ function SedintePage() {
   };
 
   const canManage = (s: Sedinta) => {
-    if (myRole === "SuperAdmin") return true;
-    if (myRole === "Manager") return true;
+    if (isSuperAdmin) return true;
+    if (isManager) return true;
     return s.userId === myUserId;
   };
 
   const canViewDetails = (s: Sedinta) => {
-    if (myRole === "SuperAdmin") return true;
-    if (myRole === "Manager") return true;
+    if (isSuperAdmin) return true;
+    if (isManager) return true;
     return s.userId === myUserId;
   };
 
@@ -129,7 +132,6 @@ function SedintePage() {
         <ErrorBanner message={error} />
         <ErrorBanner message={actionError} />
 
-        {/* Popup detalii ședință */}
         {selectedEvent && (
           <div className="mb-6 rounded-2xl border-l-4 border-amber-400 bg-white p-5 shadow-sm">
             <div className="flex justify-between items-start">

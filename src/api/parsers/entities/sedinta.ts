@@ -24,7 +24,10 @@ export function parseSedinta(raw: unknown): Sedinta | null {
     endAt,
     createdAt,
     observatii: observatii ?? undefined,
-  };
+    isTeamMeeting: (source["isTeamMeeting"] ?? source["IsTeamMeeting"]) === true,
+    managerId: readNumber(source, ["managerId", "ManagerId"]) ?? undefined,
+    participantIds: (source["participantIds"] ?? source["ParticipantIds"] ?? []) as number[],
+};
 }
 
 export function parseSedintePage(raw: unknown, pageSizeDefault: number) {

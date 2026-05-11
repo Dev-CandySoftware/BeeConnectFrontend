@@ -1,4 +1,4 @@
-export interface Sedinta {
+export type Sedinta = {
   id: number;
   userId: number;
   numeConsultant: string;
@@ -6,9 +6,10 @@ export interface Sedinta {
   endAt: string;
   observatii?: string;
   createdAt: string;
-  isTeamMeeting?: boolean;
+  isTeamMeeting: boolean;
   managerId?: number;
-}
+  participantIds: number[];
+};
 
 export interface CreateSedintaDto {
   userId: number;
